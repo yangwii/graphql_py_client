@@ -5,7 +5,7 @@
 
 1. start webserver
 
-    > ** git clone
+    > **git clone
 
 	> **python manager.py start**
 
