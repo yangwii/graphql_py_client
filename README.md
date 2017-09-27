@@ -3,14 +3,11 @@
 
 ## How to Use ?
 
-1. Install redis-monitor
+1. start webserver
 
-	> **pip install redis-monitor**
+    > ** git clone
 
-
-2. start webserver
-
-	> **redis-monitor start**
+	> **python manager.py start**
 
 Then visit [127.0.0.1:5001/index](http://127.0.0.1:5001/index) OK!
 
