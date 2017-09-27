@@ -7,7 +7,7 @@ manager = Manager(app)
 
 @manager.command
 def start():
-    app.run(port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
 
 
 # script entry
