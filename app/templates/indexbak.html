@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>GraphQL Client</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            outline: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .string {
+            color: green;
+        }
+
+        .number {
+            color: darkorange;
+        }
+
+        .boolean {
+            color: blue;
+        }
+
+        .null {
+            color: magenta;
+        }
+
+        .key {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<main class="container-fluid">
+    <div class="col-md-4">
+        <textarea class="form-control" id="req" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;
+    border:0;border-right:solid 1px #E5EBEE;border-bottom:solid 1px #eee;border-radius:0;resize: none;width: 30%;
+    outline:none;font-size:10px;"></textarea>
+    </div>
+    <div class="col-md-3">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="url">URL</label>
+                <input type="text" class="form-control" id="url" placeholder="URL" style="width: 500px ">
+            </div>
+        </form>
+        <button type="submit" class="btn btn-default" id="send">Send</button>
+        <div class="col-md-3">
+        <pre id="result">
+        </pre>
+        </div>
+    </div>
+</main>
+<script>
+    function syntaxHighlight(json) {
+        if (typeof json != 'string') {
+            json = JSON.stringify(json, undefined, 2);
+        }
+        json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+            function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'key';
+                    } else {
+                        cls = 'string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+    }
+    $('#send').click(function () {
+        var host = $('#url').val();
+        var req = $('#req').val();
+        $('#res').val('');
+        console.log(host);
+        console.log(req);
+
+        $.post('/sendqlpost', {host: host, req: req}, function (result) {
+            if (result.status == 200) {
+                console.log(result.res);
+                $('#result').html(syntaxHighlight(JSON.parse(result.res)));
+            }
+        });
+    });
+</script>
+</body>
+</html>
