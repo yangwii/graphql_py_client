@@ -9,5 +9,10 @@ manager = Manager(app)
 def start():
     app.run(port=5001, debug=True)
 
+
+# script entry
+def run():
+    manager.run()
+
 if __name__ == '__main__':
     manager.run()

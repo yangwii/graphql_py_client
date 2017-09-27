@@ -9,6 +9,12 @@
 
 	> **python manager.py start**
 
+2. start webserver
+
+    > **pip install git+https://github.com/yangwii/graphql_py_client.git@master**
+
+	> **graphqlpy_client start**
+
 Then visit [127.0.0.1:5001/index](http://127.0.0.1:5001/index) OK!
 
 
