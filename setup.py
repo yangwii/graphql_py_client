@@ -51,6 +51,7 @@ setup(name='graphqlpy-client',
           'gql==0.1.0',
           'graphene==1.4.1',
           'Flask-GraphQL==1.4.1',
+          'Flask-Script==2.0.6',
           'redis==2.10.5',
           'graphene-sqlalchemy==1.1.1'
       ],
