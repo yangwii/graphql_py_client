@@ -13,7 +13,7 @@
 
     > **pip install git+https://github.com/yangwii/graphql_py_client.git@master**
 
-	> **graphqlpy_client start**
+	> **graphqlpy-client start**
 
 Then visit [127.0.0.1:5001/index](http://127.0.0.1:5001/index) OK!
 
